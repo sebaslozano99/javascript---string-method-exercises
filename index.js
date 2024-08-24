@@ -143,3 +143,42 @@ function abbrev_name2(name_lastName){
 console.log(
     "Version 2 -->",
     abbrev_name2("  enrique iglesias    "));
+
+
+
+// 6. Write a JavaScript function that hides email addresses to prevent unauthorized access.
+// Test Data :
+// console.log(protect_email("robin_singh@example.com"));
+// "robin...@example.com"
+
+
+//confirm the email passed contains @ keyword and .com
+//I will show only 1/3 of the email before the @ character
+
+function hider(email){
+    if(!email.substring(0, email.indexOf("@")).length){
+        return "Enter a valid email address!";
+    }
+
+    if(!email.includes("@") || !email.includes(".com")){
+        return `type in yout email correctly!. Make sure it has the @ sign and .com at the end`;
+    }
+    else{
+        const charactersBeforeAt = email.substring(0 , email.indexOf("@")); //get email characters before @ sign
+        const fraction = Math.round(charactersBeforeAt.length / 3); // get what's the 1/3 part of the email before @ sign
+        const visiblePart = charactersBeforeAt.substring(0, fraction); // 1/3 visible part of the email before the @ sign
+        const hiddenPart = charactersBeforeAt.substring(fraction, charactersBeforeAt.length); // all characters that will be hidden
+        console.log(hiddenPart);
+        // const useHiddenPart = [];
+        const useHiddenPart = hiddenPart.split("").map(element => "*").join("");
+
+        // for(let i = 0; i < hiddenPart.length; i++){
+        //     useHiddenPart.push("*");
+        // }
+
+        return visiblePart + useHiddenPart + "@gmail.com";
+    }
+}
+
+
+console.log(hider("hello@gmail.com"));
